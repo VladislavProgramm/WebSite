@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DDOS Attack on GitHub Pages</title>
+</head>
+<body>
+  <h1>DDOS Attack on GitHub Pages</h1>
+  <form>
+    <label for="url">URL:</label>
+    <input type="text" id="url" name="url">
+    <br><br>
+    <label for="duration">Duration (seconds):</label>
+    <input type="text" id="duration" name="duration">
+    <br><br>
+    <label for="port">Port:</label>
+    <input type="text" id="port" name="port">
+    <br><br>
+    <input type="submit" value="Start DDOS" name="start">
+    <input type="submit" value="Stop DDOS" name="stop">
+  </form>
+  <script>
+    document.querySelector('form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const url = document.querySelector('#url').value;
+      const duration = document.querySelector('#duration').value;
+      const port = document.querySelector('#port').value;
+      if (event.target.name === 'start') {
+        // Start the DDOS Attack
+        fetch(`/start-ddos?url=${url}&duration=${duration}&port=${port}`);
+      } else {
+        // Stop the DDOS Attack
+        fetch(`/stop-ddos?url=${url}&duration=${duration}&port=${port}`);
+      }
+    });
+  </script>
+</body>
+</html>
