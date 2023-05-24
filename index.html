@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Задайте вопрос OpenAI</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script>
+    const API_KEY = "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";
+
+    function askOpenAI(question) {
+      axios.post('https://api.openai.com/v1/engines/davinci/completions', {
+        prompt: question,
+        max_tokens: 50,
+        temperature: 0.9,
+        top_p: 0.9,
+        stream: false,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${API_KEY}`,
+        }
+      }).then(res => {
+        console.log(res.data.choices[0].text);
+      }).catch(err => {
+        console.error(err);
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Задайте вопрос OpenAI</h1>
+  <input type="text" id="questionInput" placeholder="Введите ваш вопрос">
+  <button onclick="askQuestion()">Задать вопрос</button>
+
+  <script>
+    function askQuestion() {
+      const question = document.getElementById('questionInput').value;
+      askOpenAI(question);
+    }
+  </script>
+</body>
+</html>
