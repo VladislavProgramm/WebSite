@@ -23,18 +23,17 @@
         console.error(err);
       });
     }
+
+    function askQuestion() {
+      const questionInput = document.getElementById('questionInput');
+      const question = questionInput.value;
+      askOpenAI(question);
+    }
   </script>
 </head>
 <body>
   <h1>Задайте вопрос OpenAI</h1>
   <input type="text" id="questionInput" placeholder="Введите ваш вопрос">
   <button onclick="askQuestion()">Задать вопрос</button>
-
-  <script>
-    function askQuestion() {
-      const question = document.getElementById('questionInput').value;
-      askOpenAI(question);
-    }
-  </script>
 </body>
 </html>
